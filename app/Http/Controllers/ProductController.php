@@ -8,6 +8,14 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+
+/*    
+public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+*/
+
     /**
      * Display a listing of the resource.
      */
@@ -45,10 +53,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    public function show(string $id) {}
 
     /**
      * Show the form for editing the specified resource.

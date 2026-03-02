@@ -3,6 +3,9 @@
     <Head title="Create Products" />
 
     <Frontend>
+        <div v-if="$page.props.flash.message" class="alert">
+            {{ $page.props.flash.message }}
+        </div>
         <div class="mt-4 mx-4">
             <div class="flex justify-between">
                 <h5>Create Product</h5>
@@ -16,10 +19,12 @@
                         <div class="mb-3">
                             <label>Product Name</label>
                             <input type="text" v-model="form.name" class="py-1 w-full">
+                            <div v-if="errors.name" class="text-red-500">{{ errors.name }}</div>
                         </div>
                         <div class="mb-3">
                             <label>Product Price</label>
                             <input type="text" v-model="form.price" class="py-1 w-full">
+                            <div v-if="errors.price" class="text-red-500">{{ errors.price }}</div>
                         </div>
                         <div class="mb-3">
                             <Link :href="route('products.index')"
@@ -42,6 +47,10 @@
 import Frontend from '@/Layouts/FrontendLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
+defineProps({
+    errors: Object
+});
+
 const form = useForm({
     name: '',
     price: '',
@@ -50,7 +59,7 @@ const form = useForm({
 
 const saveProduct = () => {
     const res = form.post(route('products.store'));
-    if(res){
+    if (res) {
         form.reset();
     }
 }
