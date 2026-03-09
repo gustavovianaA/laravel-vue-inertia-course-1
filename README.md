@@ -1,67 +1,51 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Projeto de Estudos de Laravel + Vue.js + Inertia
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Apenas um projeto de estudos para a construção de uma SPA monolítica com **Laravel + Vue.js + Inertia**. Com base em um tutorial de CRUD simples de uma lista de produtos, irei modificar o projeto implementando algumas tarefas. O tutorial original permanecerá na branch **tutorial**, irei trabalhar na branch **mymod** e posteriormente fazer o merge na branch **main**.
 
-## About Laravel
+## Instalação
+A ser escriito...
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tarefas (TODO List)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# laravel-vue-inertia-course-1
+<table>
+<thead>
+<tr>
+<th>Tarefa</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ajusta o tipo de dados correto para o preço do produto</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>Inserir novos campos em produtos (Imagem,descrição) e realizar o CRUD completo</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>Apenas usuários logados poderão fazer o CRUD em produtos, se não estiver logado apenas visualiza o produto.</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>Mudar layout dos produtos para se parecer com um e-commerce (na área livre da SPA)</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>Usar Factories e Seeders para semear a tabela produtos</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>Implementar Paginação de produtos</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>Home recebe no máximo de 10 produtos, produtos recebe mais e com paginação</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>Consumir uma API gratuita de câmbio e implementar os dados na home</td>
+<td>Pendente</td>
+</tr>
+</tbody>
+</table>
