@@ -14,14 +14,26 @@
                 <li class="nav-item">
                     <Link class="text-dark" :href="route('contactUs')">Contact Us</Link>
                 </li>
-                <li class="nav-item">
+
+                <li v-if="!page.props.auth.user" class="nav-item">
                     <Link class="text-dark" :href="route('login')">Login</Link>
                 </li>
+
+                <li v-if="page.props.auth.user" class="nav-item">
+                    <Link class="text-dark" :href="route('dashboard')">Área Restrita</Link>
+                </li>
+                
+                <li class="nav-item">
+                    <Link class="text-dark" :href="route('register')">Criar Conta</Link>
+                </li>
+
             </ul>
         </div>
     </nav>
 </template>
 
 <script setup>
-    import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
+
+const page = usePage();
 </script>
