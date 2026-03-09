@@ -28,7 +28,7 @@
                         <td class="py-2 px-4 border">{{ item.name }}</td>
                         <td class="py-2 px-4 border">{{ item.price }}</td>
                         <td class="text-center py-2 px-4 border">
-                            <Link :href="route('products.show',item.id)"
+                            <Link :href="route('products.show', item.id)"
                                 class="px-2 py-1 bg-blue-300 text-dark rounded me-2 inline-block">
                                 Show
                             </Link>
@@ -36,8 +36,8 @@
                                 class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
                                 Edit
                             </Link>
-                            <button type="submit"
-                                class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block">
+                            <button type="submit" class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block"
+                                @click="deleteProduct(item.id)">
                                 Delete
                             </button>
                         </td>
@@ -50,10 +50,18 @@
 
 <script setup>
 import Frontend from '@/Layouts/FrontendLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
-    products: Array, 
+    products: Array,
 });
+
+const form = useForm({});
+
+const deleteProduct = (productId) => {
+    if (confirm('Are yu sure you want to delete the product?')) {
+        form.delete(route('products.destroy', productId));
+    }
+};
 
 </script>

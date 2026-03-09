@@ -56,7 +56,12 @@ public function __construct()
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {}
+    public function show(Product $product)
+    {
+        return Inertia::render('Frontend/Product/Show', [
+            'product' => $product
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -89,8 +94,9 @@ public function __construct()
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->to('/products')->with('message', 'Product Delete Successfully');
     }
 }
