@@ -32,7 +32,7 @@ class AppProductController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('App/Product/Create');
     }
 
     /**
@@ -40,38 +40,63 @@ class AppProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer',
+        ]);
+
+        Product::create([
+            'name' => $request->name,
+            'price' => $request->price
+        ]);
+
+        return redirect()->to('/app/products')->with('message', 'Product Created Successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        //
+        return Inertia::render('App/Product/Show', [
+            'product' => $product
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        return Inertia::render('App/Product/Edit', [
+            'product' => $product
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer',
+        ]);
+
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price
+        ]);
+
+        return redirect()->to('/app/products')->with('message', 'Product Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->to('/app/products')->with('message', 'Product Delete Successfully');
     }
 }

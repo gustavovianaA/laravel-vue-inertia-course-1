@@ -17,7 +17,7 @@
                             <div class="mt-4 mx-4">
                                 <div class="flex justify-between">
                                     <h5>Product Lists</h5>
-                                    <Link :href="route('products.create')"
+                                    <Link :href="route('app.products.create')"
                                         class="bg-blue-500 text-white p-3 rounded mb-4">Add
                                         Product
                                     </Link>
@@ -38,11 +38,11 @@
                                             <td class="py-2 px-4 border">{{ item.name }}</td>
                                             <td class="py-2 px-4 border">{{ item.price }}</td>
                                             <td class="text-center py-2 px-4 border">
-                                                <Link :href="route('products.show', item.id)"
+                                                <Link :href="route('app.products.show', item.id)"
                                                     class="px-2 py-1 bg-blue-300 text-dark rounded me-2 inline-block">
                                                     Show
                                                 </Link>
-                                                <Link :href="route('products.edit', item.id)"
+                                                <Link :href="route('app.products.edit', item.id)"
                                                     class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
                                                     Edit
                                                 </Link>
@@ -79,7 +79,7 @@ const form = useForm({});
 
 const deleteProduct = (productId) => {
     if (confirm('Are yu sure you want to delete the product?')) {
-        form.delete(route('products.destroy', productId));
+        form.delete(route('app.products.destroy', productId));
     }
 };
 

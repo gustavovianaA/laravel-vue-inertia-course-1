@@ -14,18 +14,23 @@ Route::get('/about', [FrontendController::class, 'about'])->name('aboutUs');
 Route::inertia('/contact', 'Frontend/Contact')->name('contactUs');
 Route::resource('products', ProductController::class);
 
-
+/*
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+*/
 
-Route::prefix('app')->group(function () {
+Route::get('/app', [AppDashboardController::class, 'index'])->name('dashboard')
+->middleware(['auth', 'verified']);
 
-    Route::get('/', [AppDashboardController::class, 'index'])->name('dashboard');
+Route::prefix('app')
+->name('app.')
+->middleware(['auth', 'verified'])
+->group(function () {
 
     Route::resource('products', AppProductController::class);
 
-})->middleware(['auth', 'verified']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
