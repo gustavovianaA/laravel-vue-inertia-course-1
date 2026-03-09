@@ -17,10 +17,19 @@ A ser escriito...
 <tbody>
 <tr>
 <td>Ajusta o tipo de dados correto para o preço do produto</td>
-<td>Pendente</td>
+<td>Feito</td>
 </tr>
 <tr>
 <td>Inserir novos campos em produtos (Imagem,descrição) e realizar o CRUD completo</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<tr>
+<td>Criar um novo CRUD em categorias de produtos</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>Implementar a relação Produtos:N -> Categorias:1</td>
 <td>Pendente</td>
 </tr>
 <tr>
