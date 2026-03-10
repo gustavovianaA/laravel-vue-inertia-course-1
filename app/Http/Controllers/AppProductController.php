@@ -21,7 +21,7 @@ class AppProductController extends Controller
      */
     public function index()
     {
-        $products = Product::get();
+        $products = Product::select('id', 'name', 'price' , 'cover')->get();
         return Inertia::render('App/Product/Index', [
             'products' => $products
         ]);
@@ -42,15 +42,25 @@ class AppProductController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'price' => 'required|integer',
+            'price' => 'required|string',
+            'cover' => 'nullable|file',
+            'description' => 'nullable|string|max:5000'
         ]);
+
+        $coverName = $request->hasFile('cover') ? 
+        $request->file('cover')->getClientOriginalName() : 
+        '/img/default-product.jpg';
 
         Product::create([
             'name' => $request->name,
-            'price' => $request->price
+            'price' => $request->price,
+            'cover' => $coverName,
+            'description' => $request->description,
+            'category_id' => 1
         ]);
 
-        return redirect()->to('/app/products')->with('message', 'Product Created Successfully');
+        return redirect()->to('/app/products')
+            ->with('message', 'Product Created Successfully');
     }
 
     /**

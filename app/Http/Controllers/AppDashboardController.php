@@ -12,7 +12,7 @@ class AppDashboardController extends Controller
     public function index()
     {
 
-        $products = Product::get();
+        $products = Product::select('id', 'name', 'price')->get();
         $categories = Category::get();
         return Inertia::render('App/Dashboard', [
             'products' => $products,

@@ -15,17 +15,18 @@
 
                     <div class="mt-4 mx-4">
                         <div class="flex justify-between">
-                            <h5>Product Lists</h5>
-                            <Link :href="route('products.create')" class="bg-blue-500 text-white p-3 rounded mb-4">Add
-                                Product
+                            <h5>Produtos</h5>
+                            <Link :href="route('app.products.create')" class="bg-blue-500 text-white p-3 rounded mb-4">
+                                Cadastrar Produto
                             </Link>
                         </div>
                         <table class="w-full bg-white border border-gray-200 shadow">
                             <thead>
                                 <tr>
                                     <th class="py-2 px-4 text-left border">Id</th>
-                                    <th class="py-2 px-4 text-left border">Name</th>
-                                    <th class="py-2 px-4 text-left border">Price</th>
+                                    <th class="py-2 px-4 text-left border">Capa</th>
+                                    <th class="py-2 px-4 text-left border">Nome</th>
+                                    <th class="py-2 px-4 text-left border">Preço</th>
                                     <th class="py-2 px-4 text-left border">Action</th>
                                 </tr>
                             </thead>
@@ -33,8 +34,9 @@
                             <tbody>
                                 <tr v-for="(item, index) in products" :key="index">
                                     <td class="py-2 px-4 border">{{ item.id }}</td>
+                                    <td class="py-2 px-4 border"><img class="w-40" :src="item.cover"></td>
                                     <td class="py-2 px-4 border">{{ item.name }}</td>
-                                    <td class="py-2 px-4 border">{{ item.price }}</td>
+                                    <td class="py-2 px-4 border">{{ formatCurrency(item.price) }}</td>
                                     <td class="text-center py-2 px-4 border">
                                         <Link :href="route('products.show', item.id)"
                                             class="px-2 py-1 bg-blue-300 text-dark rounded me-2 inline-block">
@@ -71,6 +73,13 @@ defineProps({
 });
 
 const form = useForm({});
+
+const formatCurrency = (value) => {
+    return Number(value).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    })
+}
 
 const deleteProduct = (productId) => {
     if (confirm('Are yu sure you want to delete the product?')) {

@@ -30,7 +30,7 @@ A ser escriito...
 </tr>
 <tr>
 <td>Implementar a relação Produtos:N -> Categorias:1</td>
-<td>Pendente</td>
+<td>Feito</td>
 </tr>
 <tr>
 <td>Apenas usuários logados poderão fazer o CRUD em produtos, se não estiver logado apenas visualiza o produto.</td>
@@ -50,6 +50,10 @@ A ser escriito...
 </tr>
 <tr>
 <td>Home recebe no máximo de 10 produtos, produtos recebe mais e com paginação</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>Adicionar testes unitários e testes de funcionalidade</td>
 <td>Pendente</td>
 </tr>
 <tr>

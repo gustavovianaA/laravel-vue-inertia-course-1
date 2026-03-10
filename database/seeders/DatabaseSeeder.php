@@ -19,5 +19,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        //Insert Default Category
+        $this->call([
+            CategorySeeder::class,
+        ]);
     }
 }
