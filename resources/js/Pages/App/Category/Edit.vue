@@ -5,13 +5,13 @@
     <AuthenticatedLayout>
         <div class="mt-4 mx-4">
             <div class="flex justify-between">
-                <h5>Cadastrar Categoria</h5>
+                <h5>Editar Categoria</h5>
                 <Link :href="route('app.categories.index')"
                     class="bg-red-600 text-white py-2 px-5 rounded mb-4 inline-block">
                     Voltar
                 </Link>
             </div>
-            <form @submit.prevent="saveCategory()">
+            <form @submit.prevent="updateCategory()">
                 <div class="grid grid-cols-12 gap-4">
                     <div class="col-span-4">
                         <div class="mb-3">
@@ -34,8 +34,8 @@
                     </Link>
                     <button type="submit" :disabled="form.processing"
                         class="bg-blue-500 text-white py-2 px-5 rounded mb-4">
-                        <span v-if="form.processing">Cadastrando...</span>
-                        <span v-else>Cadastrar</span>
+                        <span v-if="form.processing">Alterando...</span>
+                        <span v-else>Alterar</span>
                     </button>
 
                 </div>
@@ -49,17 +49,18 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
-    errors: Object
+const props = defineProps({
+    errors: Object,
+    category: Object
 });
 
 const form = useForm({
-    name: '',
-    description: ''
+    name: props.category.name,
+    description: props.category.description
 });
 
-const saveCategory = () => {
-    const res = form.post(route('app.categories.store'));
+const updateCategory = () => {
+    const res = form.put(route('app.categories.update' , props.category.id));
     if (res) {
         form.reset();
     }

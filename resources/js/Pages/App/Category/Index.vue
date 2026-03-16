@@ -84,7 +84,7 @@ const form = useForm({});
 
 const deleteCategory = (categoryId) => {
     if (confirm('Tem certeza que deseja deletar essa categoria?')) {
-        form.delete(route('categories.destroy', categoryId));
+        form.delete(route('app.categories.destroy', categoryId));
     }
 };
 

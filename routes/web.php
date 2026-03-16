@@ -22,18 +22,20 @@ Route::get('/dashboard', function () {
 */
 
 Route::get('/app', [AppDashboardController::class, 'index'])->name('dashboard')
-->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified']);
 
 Route::prefix('app')
-->name('app.')
-->middleware(['auth', 'verified'])
-->group(function () {
+    ->name('app.')
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
 
-    Route::resource('products', AppProductController::class);
-    Route::resource('categories', AppCategoryController::class);
-    Route::post('/categories/search', [AppCategoryController::class, 'search'])->name('categories.search');
+        Route::resource('products', AppProductController::class);
+        Route::post('/products/search', [AppProductController::class, 'search'])->name('products.search');
 
-});
+
+        Route::resource('categories', AppCategoryController::class);
+        Route::post('/categories/search', [AppCategoryController::class, 'search'])->name('categories.search');
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

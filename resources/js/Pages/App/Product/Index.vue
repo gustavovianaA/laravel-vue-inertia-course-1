@@ -21,10 +21,16 @@
                             </Link>
 
                             <div class="mb-4">
-                                <label class="block">Buscar Produto</label>
-                                <input type="text"/>
-                                <div class="inline bg-blue-500 text-white p-3 rounded">Ok</div>
+                                <form @submit.prevent="searchProduct()">
+                                    <label class="block">Buscar Produto</label>
+                                    <input type="text" v-model="search.name" />
+                                    <button class="inline bg-blue-500 text-white p-3 rounded">
+                                        Ok
+                                    </button>
+                                </form>
                             </div>
+
+
                         </div>
                         <table class="w-full bg-white border border-gray-200 shadow">
                             <thead>
@@ -97,5 +103,13 @@ const deleteProduct = (productId) => {
         form.delete(route('products.destroy', productId));
     }
 };
+
+const search = useForm({
+    name: '',
+})
+
+const searchProduct = () => {
+    search.post(route('app.products.search'));
+}
 
 </script>

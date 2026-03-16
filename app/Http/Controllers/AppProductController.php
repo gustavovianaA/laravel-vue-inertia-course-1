@@ -109,4 +109,15 @@ class AppProductController extends Controller
         $product->delete();
         return redirect()->to('/app/products')->with('message', 'Product Delete Successfully');
     }
+
+    public function search(Request $request)
+    {
+        $name = $request->name;
+
+        $products = Product::where('name', 'like', "%$name%")->get();
+
+        return Inertia::render('App/Product/Index', [
+            'products' => $products
+        ]);
+    }
 }

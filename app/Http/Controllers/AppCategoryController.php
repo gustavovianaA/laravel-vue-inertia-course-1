@@ -64,7 +64,9 @@ class AppCategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return Inertia::render('App/Category/Edit', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -72,7 +74,17 @@ class AppCategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:5000'
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        return redirect()->to('/app/categories')->with('message', 'Categoria alterada com sucesso.');
     }
 
     /**
@@ -80,7 +92,8 @@ class AppCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->to('/app/categories')->with('message', 'Categoria deletada com sucesso');
     }
 
     public function search(Request $request)

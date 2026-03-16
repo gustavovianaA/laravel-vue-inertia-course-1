@@ -18,7 +18,8 @@
                                 <div class="flex justify-between">
                                     <h5>Product Lists</h5>
                                     <Link :href="route('app.products.create')"
-                                        class="bg-blue-500 text-white p-3 rounded mb-4">Add
+                                        class="bg-blue-500 text-white p-3 rounded mb-4">
+                                        Add
                                         Product
                                     </Link>
                                 </div>
