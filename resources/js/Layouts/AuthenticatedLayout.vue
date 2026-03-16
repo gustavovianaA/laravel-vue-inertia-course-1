@@ -46,6 +46,13 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Produtos
                                 </NavLink>
+
+                                <NavLink
+                                    :href="route('app.categories.index')"
+                                    :active="route().current('app.categories.index')"
+                                >
+                                    Categorias
+                                </NavLink>
                             </div>
                         </div>
 

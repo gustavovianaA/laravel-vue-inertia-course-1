@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AppDashboardController;
 use App\Http\Controllers\AppProductController;
+use App\Http\Controllers\AppCategoryController;
 
 Route::get('/', [FrontendController::class, 'index'])->name('myhome');
 Route::get('/about', [FrontendController::class, 'about'])->name('aboutUs');
@@ -29,6 +30,8 @@ Route::prefix('app')
 ->group(function () {
 
     Route::resource('products', AppProductController::class);
+    Route::resource('categories', AppCategoryController::class);
+    Route::post('/categories/search', [AppCategoryController::class, 'search'])->name('categories.search');
 
 });
 
