@@ -67,7 +67,7 @@ class AppProductController extends Controller
             'category_id' => $request->category_id
         ]);
 
-        return redirect()->to('/app/products')
+        return redirect()->route('app.products.index')
             ->with('message', 'Produto Cadastrado com Sucesso.');
     }
 
@@ -86,8 +86,10 @@ class AppProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $categories = Category::select('id', 'name')->get();
         return Inertia::render('App/Product/Edit', [
-            'product' => $product
+            'product' => $product->load('category'),
+            'categories' => $categories
         ]);
     }
 
@@ -98,15 +100,32 @@ class AppProductController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'price' => 'required|integer',
+            'price' => 'required|string',
+            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'nullable|string|max:5000'
         ]);
 
-        $product->update([
+        $data = [
             'name' => $request->name,
-            'price' => $request->price
-        ]);
+            'price' => $request->price,
+            'description' => $request->description,
+            'category_id' => $request->category_id
+        ];
 
-        return redirect()->to('/app/products')->with('message', 'Product Updated Successfully');
+        //Cover image upload
+        if ($request->hasFile('cover')) {
+            $coverName = '/storage/' . $request->file('cover')
+                ->store('product_covers', 'public');
+            $data['cover'] = $coverName;
+        }else{
+            $data['cover'] = $product->cover;
+        }
+
+        $product->update($data);
+        
+        return redirect()->route('app.products.show', $product)
+            ->with('message', 'Produto Alterado com Sucesso.');
     }
 
     /**

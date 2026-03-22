@@ -30,6 +30,7 @@ Route::prefix('app')
     ->group(function () {
 
         Route::resource('products', AppProductController::class);
+        Route::post('/app/products/{product}', [AppProductController::class, 'update'])->name('products.update');
         Route::post('/products/search', [AppProductController::class, 'search'])->name('products.search');
 
 

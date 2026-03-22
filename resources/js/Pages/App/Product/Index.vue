@@ -59,7 +59,7 @@
                                     </td>
                                     <td class="py-2 px-4 border">{{ formatCurrency(item.price) }}</td>
                                     <td class="text-center py-2 px-4 border">
-                                        <Link :href="route('products.edit', item.id)"
+                                        <Link :href="route('app.products.edit', item.id)"
                                             class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
                                             Edit
                                         </Link>

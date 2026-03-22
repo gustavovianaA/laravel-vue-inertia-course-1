@@ -5,8 +5,11 @@
     <AuthenticatedLayout>
 
         <div class="mt-4 mx-4">
-            <div class="flex justify-between">
-                <h5>Mostrar Produto</h5>
+            <div class="flex justify-start">
+                <Link :href="route('app.products.edit', product.id)"
+                    class="px-5 py-2 bg-green-500 text-white rounded mb-4 me-2 inline-block">
+                    Editar
+                </Link>
                 <Link :href="route('app.products.index')"
                     class="bg-red-600 text-white py-2 px-5 rounded mb-4 inline-block">
                     Voltar
@@ -46,7 +49,7 @@
 
                                 <div>
                                     <p>Descrição:</p>
-                                    <hr>          
+                                    <hr>
                                     <p class="py-4">{{ product.description }}</p>
                                 </div>
 
