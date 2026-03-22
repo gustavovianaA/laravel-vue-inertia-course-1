@@ -26,14 +26,14 @@ A ser escriito...
 <tr>
 <tr>
 <td>Criar um novo CRUD em categorias de produtos</td>
-<td>Pendente</td>
+<td>Feito</td>
 </tr>
 <tr>
 <td>Implementar a relação Produtos:N -> Categorias:1</td>
 <td>Feito</td>
 </tr>
 <tr>
-<td>Apenas usuários logados poderão fazer o CRUD em produtos, se não estiver logado apenas visualiza o produto.</td>
+<td>Apenas usuários logados poderão fazer o CRUD em produtos e categorias, se não estiver logado apenas visualiza o produto.</td>
 <td>Pendente</td>
 </tr>
 <tr>

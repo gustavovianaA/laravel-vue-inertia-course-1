@@ -29,7 +29,19 @@
                             <input type="file" @change="handleCoverImage" class="py-1 w-full">
                             <div v-if="errors.cover" class="text-red-500">{{ errors.cover }}</div>
                         </div>
+
+                        <div class="mb-3">
+                            <label>Categoria</label>
+                            <select v-model="form.category_id" class="py-1 w-full">
+                                <option value="">Selecione uma categoria</option>
+                                <option v-for="category in categories" :key="category.id" :value="category.id">{{
+                                    category.name }}</option>
+                            </select>
+                            <div v-if="errors.category_id" class="text-red-500">{{ errors.category_id }}</div>
+                        </div>
+
                     </div>
+
                     <div class="col-span-4">
 
                         <div class="mb-3">
@@ -63,13 +75,15 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { Money3 } from 'v-money3';
 
 defineProps({
-    errors: Object
+    errors: Object,
+    categories: Array
 });
 
 const form = useForm({
     name: '',
     price: '',
     cover: null,
+    category_id: '',
     description: ''
 });
 

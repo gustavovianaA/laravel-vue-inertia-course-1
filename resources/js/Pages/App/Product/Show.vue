@@ -25,6 +25,12 @@
                                     </h1>
                                 </div>
 
+                                <div class="mb-3">
+                                    <h1 style="font-size: 1.5em">
+                                        Categoria: {{ product.category.name }}
+                                    </h1>
+                                </div>
+
                                 <div>
                                     <img :src="product.cover" class="w-full">
                                 </div>
