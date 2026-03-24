@@ -99,8 +99,8 @@ const formatCurrency = (value) => {
 }
 
 const deleteProduct = (productId) => {
-    if (confirm('Are yu sure you want to delete the product?')) {
-        form.delete(route('products.destroy', productId));
+    if (confirm('Tem certeza que deseja deletar?')) {
+        form.delete(route('app.products.destroy', productId));
     }
 };
 

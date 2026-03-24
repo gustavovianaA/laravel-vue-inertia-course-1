@@ -108,11 +108,11 @@ const moneyConfig = {
 }
 
 const updateProduct = () => {
-    form.transform((data) => ({
-        ...data,
-        _method: 'put'
-    })).post(route('app.products.update', props.product.id), {
-        forceFormData: true
+    form.post(route('app.products.update', props.product.id), {
+        forceFormData: true,
+        onBefore: () => {
+            form._method = 'put'
+        }
     });
 }
 </script>

@@ -118,12 +118,12 @@ class AppProductController extends Controller
             $coverName = '/storage/' . $request->file('cover')
                 ->store('product_covers', 'public');
             $data['cover'] = $coverName;
-        }else{
+        } else {
             $data['cover'] = $product->cover;
         }
 
         $product->update($data);
-        
+
         return redirect()->route('app.products.show', $product)
             ->with('message', 'Produto Alterado com Sucesso.');
     }
@@ -134,7 +134,8 @@ class AppProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->to('/app/products')->with('message', 'Product Delete Successfully');
+        return redirect()->route('app.products.index')
+            ->with('message', 'Produto Deletado com Sucesso.');
     }
 
     public function search(Request $request)
