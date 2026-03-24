@@ -14,7 +14,7 @@
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     
                     <section class="mx-4 my-3">
-                    <CardGrid :cards="cards" />
+                    <CardGridAnimated :cards="cards" />
                     </section>
 
                     <div class="grid grid-cols-12 px-2 py-4">
@@ -118,27 +118,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import CardGrid from '@/Components/CardGrid.vue';
-
-/*
-const cards = [
-  {
-    id: 1,
-    title: 'Produtos',
-    number: '56'
-  },
-  {
-    id: 2,
-    title: 'Categorias',
-    number: '56'
-  },
-  {
-    id: 3,
-    title: 'Usuários',
-    number: '56'
-  }
-];
-*/
+import CardGridAnimated from '@/Components/CardGridAnimated.vue';
 
 const props = defineProps({
     products: Array,
