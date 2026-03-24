@@ -12,15 +12,20 @@
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                    
+                    <section class="mx-4 my-3">
+                    <CardGrid :cards="cards" />
+                    </section>
+
                     <div class="grid grid-cols-12 px-2 py-4">
                         <div class="col-span-8">
                             <div class="mt-4 mx-4">
                                 <div class="flex justify-between">
-                                    <h5>Product Lists</h5>
+                                    <h5>Produtos Cadastrados</h5>
                                     <Link :href="route('app.products.create')"
                                         class="bg-blue-500 text-white p-3 rounded mb-4">
-                                        Add
-                                        Product
+                                        Aicionar
+                                        Produto
                                     </Link>
                                 </div>
                                 <table class="w-full bg-white border border-gray-200 shadow">
@@ -34,23 +39,24 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr v-for="(item, index) in products" :key="index">
+                                        <tr v-for="item in products" :key="item.id">
                                             <td class="py-2 px-4 border">{{ item.id }}</td>
-                                            <td class="py-2 px-4 border">{{ item.name }}</td>
+                                            <td class="py-2 px-4 border">
+                                                <Link :href="route('app.products.show', item.id)" class="text-blue-500 underline">
+                                                {{ item.name }}
+                                                </Link>
+                                            </td>
                                             <td class="py-2 px-4 border">{{ item.price }}</td>
                                             <td class="text-center py-2 px-4 border">
-                                                <Link :href="route('app.products.show', item.id)"
-                                                    class="px-2 py-1 bg-blue-300 text-dark rounded me-2 inline-block">
-                                                    Show
-                                                </Link>
+                                                
                                                 <Link :href="route('app.products.edit', item.id)"
                                                     class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
-                                                    Edit
+                                                    Editar
                                                 </Link>
                                                 <button type="submit"
                                                     class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block"
                                                     @click="deleteProduct(item.id)">
-                                                    Delete
+                                                    Deletar
                                                 </button>
                                             </td>
                                         </tr>
@@ -59,7 +65,48 @@
                             </div>
                         </div>
                         <div class="col-span-4">
-                            <h2> Categorias</h2>
+                            <div class="mt-4 mx-4">
+                                <div class="flex justify-between">
+                                    <h5>Categorias Cadastradas</h5>
+                                    <Link :href="route('app.categories.create')"
+                                        class="bg-blue-500 text-white p-3 rounded mb-4">
+                                        Aicionar
+                                        Categoria
+                                    </Link>
+                                </div>
+                                <table class="w-full bg-white border border-gray-200 shadow">
+                                    <thead>
+                                        <tr>
+                                            <th class="py-2 px-4 text-left border">Id</th>
+                                            <th class="py-2 px-4 text-left border">Nome</th>
+                                            <th class="py-2 px-4 text-left border">Ações</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr v-for="item in categories" :key="item.id">
+                                            <td class="py-2 px-4 border">{{ item.id }}</td>
+                                            <td class="py-2 px-4 border">    
+                                            <Link :href="route('app.categories.show', item.id)" class="text-blue-500 underline">
+                                                {{ item.name }}
+                                            </Link>
+                                            </td>
+                                            <td class="text-center py-2 px-4 border">
+                                                
+                                                <Link :href="route('app.categories.edit', item.id)"
+                                                    class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
+                                                    Edit
+                                                </Link>
+                                                <button type="submit"
+                                                    class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block"
+                                                    @click="deleteCategory(item.id)">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,9 +118,32 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import CardGrid from '@/Components/CardGrid.vue';
 
-defineProps({
+/*
+const cards = [
+  {
+    id: 1,
+    title: 'Produtos',
+    number: '56'
+  },
+  {
+    id: 2,
+    title: 'Categorias',
+    number: '56'
+  },
+  {
+    id: 3,
+    title: 'Usuários',
+    number: '56'
+  }
+];
+*/
+
+const props = defineProps({
     products: Array,
+    categories: Array,
+    cards: Array
 });
 
 const form = useForm({});
@@ -81,6 +151,12 @@ const form = useForm({});
 const deleteProduct = (productId) => {
     if (confirm('Are yu sure you want to delete the product?')) {
         form.delete(route('app.products.destroy', productId));
+    }
+};
+
+const deleteCategory = (categoryId) => {
+    if (confirm('Are yu sure you want to delete the categoria?')) {
+        form.delete(route('app.categories.destroy', categoryId));
     }
 };
 

@@ -20,8 +20,8 @@ A ser escriito...
 <td>Feito</td>
 </tr>
 <tr>
-<td>Inserir novos campos em produtos (Imagem,descrição) e realizar o CRUD completo</td>
-<td>Pendente</td>
+<td>Inserir novos campos em produtos (Imagem,descrição) e realizar o CRUD completo em Produtos</td>
+<td>Feito</td>
 </tr>
 <tr>
 <tr>
