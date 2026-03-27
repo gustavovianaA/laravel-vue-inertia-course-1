@@ -1,6 +1,25 @@
-# Projeto de Estudos de Laravel + Vue.js + Inertia
+## 🚀 Laravel + Vue + Inertia SPA
 
-Apenas um projeto de estudos para a construção de uma SPA monolítica com **Laravel + Vue.js + Inertia**. Com base em um tutorial de CRUD simples de uma lista de produtos, irei modificar o projeto implementando algumas tarefas. O tutorial original permanecerá na branch **tutorial**, irei trabalhar na branch **mymod** e posteriormente fazer o merge na branch **main**.
+Este projeto consiste na evolução de um CRUD simples para uma SPA monolítica utilizando Laravel, Vue.js e Inertia.js.
+
+A partir de uma base inicial (tutorial de CRUD de produtos), estou expandindo o sistema com novas funcionalidades e melhorias, simulando um ambiente real de desenvolvimento incremental.
+
+### 🧠 Abordagem
+
+* O projeto original foi mantido na branch `tutorial`
+* As melhorias estão sendo desenvolvidas na branch `mymod`
+* O objetivo é evoluir o sistema gradualmente até uma versão mais completa, realizando posteriormente o merge na `main`
+
+### 🔧 Tecnologias
+
+* Laravel
+* Vue 3
+* Inertia.js
+* Tailwind CSS
+
+### 📌 Objetivo
+
+Explorar a construção de aplicações SPA monolíticas, organização de código e evolução contínua de um sistema real.
 
 ## Instalação
 A ser escriito...
