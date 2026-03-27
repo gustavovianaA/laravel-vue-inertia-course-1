@@ -12,9 +12,9 @@
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                    
+
                     <section class="mx-4 my-3">
-                    <CardGridAnimated :cards="cards" />
+                        <CardGridAnimated :cards="cards" />
                     </section>
 
                     <div class="grid grid-cols-12 px-2 py-4">
@@ -28,6 +28,10 @@
                                         Produto
                                     </Link>
                                 </div>
+
+                                <!-- Pagination Component -->
+                                <DataPagination :data="products" />
+
                                 <table class="w-full bg-white border border-gray-200 shadow">
                                     <thead>
                                         <tr>
@@ -39,16 +43,17 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr v-for="item in products" :key="item.id">
+                                        <tr v-for="item in products.data" :key="item.id">
                                             <td class="py-2 px-4 border">{{ item.id }}</td>
                                             <td class="py-2 px-4 border">
-                                                <Link :href="route('app.products.show', item.id)" class="text-blue-500 underline">
-                                                {{ item.name }}
+                                                <Link :href="route('app.products.show', item.id)"
+                                                    class="text-blue-500 underline">
+                                                    {{ item.name }}
                                                 </Link>
                                             </td>
-                                            <td class="py-2 px-4 border">{{ item.price }}</td>
+                                            <td class="py-2 px-4 border">{{ formatCurrency(item.price) }}</td>
                                             <td class="text-center py-2 px-4 border">
-                                                
+
                                                 <Link :href="route('app.products.edit', item.id)"
                                                     class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
                                                     Editar
@@ -62,6 +67,10 @@
                                         </tr>
                                     </tbody>
                                 </table>
+
+                                <!-- Pagination Component -->
+                                <DataPagination :data="products" />
+
                             </div>
                         </div>
                         <div class="col-span-4">
@@ -74,6 +83,10 @@
                                         Categoria
                                     </Link>
                                 </div>
+
+                                <!-- Pagination Component -->
+                                <DataPagination :data="categories" />
+
                                 <table class="w-full bg-white border border-gray-200 shadow">
                                     <thead>
                                         <tr>
@@ -84,15 +97,17 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr v-for="item in categories" :key="item.id">
+
+                                        <tr v-for="item in categories.data" :key="item.id">
                                             <td class="py-2 px-4 border">{{ item.id }}</td>
-                                            <td class="py-2 px-4 border">    
-                                            <Link :href="route('app.categories.show', item.id)" class="text-blue-500 underline">
-                                                {{ item.name }}
-                                            </Link>
+                                            <td class="py-2 px-4 border">
+                                                <Link :href="route('app.categories.show', item.id)"
+                                                    class="text-blue-500 underline">
+                                                    {{ item.name }}
+                                                </Link>
                                             </td>
                                             <td class="text-center py-2 px-4 border">
-                                                
+
                                                 <Link :href="route('app.categories.edit', item.id)"
                                                     class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
                                                     Editar
@@ -104,8 +119,13 @@
                                                 </button>
                                             </td>
                                         </tr>
+
                                     </tbody>
                                 </table>
+
+                                <!-- Pagination Component -->
+                                <DataPagination :data="categories" />
+
                             </div>
                         </div>
                     </div>
@@ -119,14 +139,22 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import CardGridAnimated from '@/Components/CardGridAnimated.vue';
+import DataPagination from '@/Components/DataPagination.vue';
 
 const props = defineProps({
-    products: Array,
-    categories: Array,
+    products: Object,
+    categories: Object,
     cards: Array
 });
 
 const form = useForm({});
+
+const formatCurrency = (value) => {
+    return Number(value).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    })
+}
 
 const deleteProduct = (productId) => {
     if (confirm('Are yu sure you want to delete the product?')) {

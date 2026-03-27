@@ -60,8 +60,8 @@ A ser escriito...
 <td>Pendente</td>
 </tr>
 <tr>
-<td>Usar Factories e Seeders para semear a tabela produtos</td>
-<td>Pendente</td>
+<td>Usar Factories e Seeders para semear as tabelas Produtos e Categorias</td>
+<td>Feito</td>
 </tr>
 <tr>
 <td>Implementar Paginação de produtos</td>

@@ -13,19 +13,19 @@ class AppDashboardController extends Controller
     public function index()
     {
 
-        $products = Product::select('id', 'name', 'price')->get();
-        $categories = Category::select('id','name')->get();
+        $products = Product::select('id', 'name', 'price')->paginate(10);
+        $categories = Category::select('id','name')->paginate(10);
         
         $cards = [
             [
                 'id' => 1,
                 'title' => 'Produtos',
-                'number' => $products->count()
+                'number' => Product::count()
             ],
             [
                 'id' => 2,
                 'title' => 'Categorias',
-                'number' => $categories->count()
+                'number' => Category::count()
             ],
             [
                 'id' => 3,

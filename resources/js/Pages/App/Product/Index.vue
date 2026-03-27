@@ -32,6 +32,10 @@
 
 
                         </div>
+                        
+                        <!-- Pagination Component -->
+                        <DataPagination :data="products" />
+                        
                         <table class="w-full bg-white border border-gray-200 shadow">
                             <thead>
                                 <tr>
@@ -44,7 +48,7 @@
                             </thead>
 
                             <tbody>
-                                <tr v-for="(item, index) in products" :key="index">
+                                <tr v-for="(item, index) in products.data" :key="index">
                                     <td class="py-2 px-4 border">{{ item.id }}</td>
                                     <td class="py-2 px-4 border">
                                         <Link :href="route('app.products.show', item.id)">
@@ -72,6 +76,9 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <!-- Pagination Component -->
+                        <DataPagination :data="products" />
                     </div>
                 </div>
 
@@ -84,9 +91,10 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import DataPagination from '@/Components/DataPagination.vue';
 
 defineProps({
-    products: Array,
+    products: Object,
 });
 
 const form = useForm({});

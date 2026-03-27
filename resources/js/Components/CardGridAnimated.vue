@@ -34,7 +34,7 @@ onMounted(() => {
 
 function animateNumber(id, target) {
   let current = 0;
-  const increment = Math.ceil(target / 50); // Adjust speed by changing divisor
+  const increment = Math.ceil(target / 100); // Adjust speed by changing divisor
   const timer = setInterval(() => {
     current += increment;
     if (current >= target) {
@@ -42,6 +42,6 @@ function animateNumber(id, target) {
       clearInterval(timer);
     }
     animatedNumbers.value[id] = current;
-  }, 100); // Adjust interval for animation speed
+  }, 50); // Adjust interval for animation speed
 }
 </script>
