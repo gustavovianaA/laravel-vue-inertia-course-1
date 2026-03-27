@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Category;
 
 class AppProductController extends Controller
 {
-    protected $defaultCover = '/img/default-product.jpg';
+    protected $defaultCover = Product::DEFAULT_COVER;
 
     public function __construct()
     {
@@ -118,8 +119,9 @@ class AppProductController extends Controller
             $coverName = '/storage/' . $request->file('cover')
                 ->store('product_covers', 'public');
             $data['cover'] = $coverName;
-        } else {
-            $data['cover'] = $product->cover;
+
+            if($product->cover != $this->defaultCover)
+                Storage::disk('public')->delete($product->cover);
         }
 
         $product->update($data);

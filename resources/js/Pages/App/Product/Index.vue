@@ -39,7 +39,7 @@
                                     <th class="py-2 px-4 text-left border">Capa</th>
                                     <th class="py-2 px-4 text-left border">Nome</th>
                                     <th class="py-2 px-4 text-left border">Preço</th>
-                                    <th class="py-2 px-4 text-left border">Action</th>
+                                    <th class="py-2 px-4 text-left border">Ações</th>
                                 </tr>
                             </thead>
 
@@ -61,12 +61,12 @@
                                     <td class="text-center py-2 px-4 border">
                                         <Link :href="route('app.products.edit', item.id)"
                                             class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
-                                            Edit
+                                            Editar
                                         </Link>
                                         <button type="submit"
                                             class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block"
                                             @click="deleteProduct(item.id)">
-                                            Delete
+                                            Deletar
                                         </button>
                                     </td>
                                 </tr>

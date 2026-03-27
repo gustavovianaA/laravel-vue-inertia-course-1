@@ -15,23 +15,25 @@
                 <div class="grid grid-cols-12 gap-4">
                     <div class="col-span-4">
                         <div class="mb-3">
-                            <label>Nome</label>
+                            <label class="font-bold">Imagem de Capa</label>
+                            <input type="file" @change="handleCoverImage" class="py-1 w-full">
+                            <div v-if="errors.cover" class="text-red-500">{{ errors.cover }}</div>
+                            <img v-if="preview" :src="preview" class="w-full" />
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div class="mb-3">
+                            <label class="font-bold">Nome</label>
                             <input type="text" v-model="form.name" class="py-1 w-full">
                             <div v-if="errors.name" class="text-red-500">{{ errors.name }}</div>
                         </div>
                         <div class="mb-3">
-                            <label>Preço</label>
+                            <label class="font-bold">Preço</label>
                             <Money3 v-model="form.price" v-bind="moneyConfig" class="py-1 w-full" />
                             <div v-if="errors.price" class="text-red-500">{{ errors.price }}</div>
                         </div>
                         <div class="mb-3">
-                            <label>Imagem de Capa</label>
-                            <input type="file" @change="handleCoverImage" class="py-1 w-full">
-                            <div v-if="errors.cover" class="text-red-500">{{ errors.cover }}</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Categoria</label>
+                            <label class="font-bold">Categoria</label>
                             <select v-model="form.category_id" class="py-1 w-full">
                                 <option value="">Selecione uma categoria</option>
                                 <option v-for="category in categories" :key="category.id" :value="category.id">{{
@@ -45,7 +47,7 @@
                     <div class="col-span-4">
 
                         <div class="mb-3">
-                            <label>Descrição do Produto</label>
+                            <label class="font-bold">Descrição do Produto</label>
                             <textarea class="block w-full" rows="10" v-model="form.description"></textarea>
                             <div v-if="errors.description" class="text-red-500">{{ errors.description }}</div>
                         </div>
@@ -73,11 +75,14 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { Money3 } from 'v-money3';
+import { ref } from 'vue';
 
 defineProps({
     errors: Object,
     categories: Array
 });
+
+const preview = ref(null);
 
 const form = useForm({
     name: '',
@@ -88,7 +93,9 @@ const form = useForm({
 });
 
 const handleCoverImage = (event) => {
-    form.cover = event.target.files[0]
+    const file = event.target.files[0];
+    form.cover = file;
+    preview.value = URL.createObjectURL(file);
 }
 
 const moneyConfig = {

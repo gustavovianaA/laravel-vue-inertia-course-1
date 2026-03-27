@@ -17,12 +17,13 @@
             <form @submit.prevent="updateProduct()" enctype="multipart/form-data">
                 <div class="grid grid-cols-12 gap-4">
                     <div class="col-span-4">
-                        <img class="" :src="props.product.cover">
 
                         <div class="mb-3">
                             <label>Imagem de Capa</label>
                             <input type="file" @change="handleCoverImage" class="py-1 w-full">
                             <div v-if="errors.cover" class="text-red-500">{{ errors.cover }}</div>
+                            <img :class="{ 'hidden': preview }" class="w-full" :src="props.product.cover">
+                            <img v-if="preview" :src="preview" class="w-full" />
                         </div>
                     </div>
                     <div class="col-span-4">
@@ -81,12 +82,15 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { Money3 } from 'v-money3';
+import { ref } from 'vue';
 
 const props = defineProps({
     errors: Object,
     product: Object,
     categories: Array
 });
+
+const preview = ref(null);
 
 const form = useForm({
     name: props.product.name,
@@ -97,7 +101,9 @@ const form = useForm({
 });
 
 const handleCoverImage = (event) => {
-    form.cover = event.target.files[0]
+    const file = event.target.files[0];
+    form.cover = file;
+    preview.value = URL.createObjectURL(file);
 }
 
 const moneyConfig = {

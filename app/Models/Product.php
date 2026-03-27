@@ -12,6 +12,8 @@ class Product extends Model
     //Optional database name definition
     protected $table = 'products';
 
+    const DEFAULT_COVER = '/img/default-product.jpg';
+
     protected $fillable = [
         'name',
         'cover',

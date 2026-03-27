@@ -95,12 +95,12 @@
                                                 
                                                 <Link :href="route('app.categories.edit', item.id)"
                                                     class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
-                                                    Edit
+                                                    Editar
                                                 </Link>
                                                 <button type="submit"
                                                     class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block"
                                                     @click="deleteCategory(item.id)">
-                                                    Delete
+                                                    Deletar
                                                 </button>
                                             </td>
                                         </tr>
