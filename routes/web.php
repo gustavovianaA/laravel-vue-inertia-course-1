@@ -5,15 +5,13 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AppDashboardController;
 use App\Http\Controllers\AppProductController;
 use App\Http\Controllers\AppCategoryController;
+use App\Http\Controllers\SitePagesController;
 
-Route::get('/', [FrontendController::class, 'index'])->name('myhome');
-Route::get('/about', [FrontendController::class, 'about'])->name('aboutUs');
-Route::inertia('/contact', 'Frontend/Contact')->name('contactUs');
-Route::resource('products', ProductController::class);
+Route::get('/', [SitePagesController::class, 'home'])->name('myhome');
+Route::get('/about', [SitePagesController::class, 'about'])->name('aboutUs');
 
 /*
 Route::get('/dashboard', function () {

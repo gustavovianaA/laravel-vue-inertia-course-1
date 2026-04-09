@@ -19,114 +19,118 @@
 
                     <div class="grid grid-cols-12 px-2 py-4">
                         <div class="col-span-8">
-                            <div class="mt-4 mx-4">
-                                <div class="flex justify-between">
-                                    <h5>Produtos Cadastrados</h5>
-                                    <Link :href="route('app.products.create')"
-                                        class="bg-blue-500 text-white p-3 rounded mb-4">
-                                        Aicionar
-                                        Produto
-                                    </Link>
+                            <section class="py-3 shadow-lg">
+                                <div class="mt-4 mx-4">
+                                    <div class="flex justify-between">
+                                        <h5>Produtos Cadastrados</h5>
+                                        <Link :href="route('app.products.create')"
+                                            class="bg-blue-500 text-white p-3 rounded mb-4">
+                                            Aicionar
+                                            Produto
+                                        </Link>
+                                    </div>
+
+                                    <!-- Pagination Component -->
+                                    <DataPagination :data="products" />
+
+                                    <table class="w-full bg-white border border-gray-200 shadow">
+                                        <thead>
+                                            <tr>
+                                                <th class="py-2 px-4 text-left border">Id</th>
+                                                <th class="py-2 px-4 text-left border">Name</th>
+                                                <th class="py-2 px-4 text-left border">Price</th>
+                                                <th class="py-2 px-4 text-left border">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr v-for="item in products.data" :key="item.id">
+                                                <td class="py-2 px-4 border">{{ item.id }}</td>
+                                                <td class="py-2 px-4 border">
+                                                    <Link :href="route('app.products.show', item.id)"
+                                                        class="text-blue-500 underline">
+                                                        {{ item.name }}
+                                                    </Link>
+                                                </td>
+                                                <td class="py-2 px-4 border">{{ formatCurrency(item.price) }}</td>
+                                                <td class="text-center py-2 px-4 border">
+
+                                                    <Link :href="route('app.products.edit', item.id)"
+                                                        class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
+                                                        Editar
+                                                    </Link>
+                                                    <button type="submit"
+                                                        class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block"
+                                                        @click="deleteProduct(item.id)">
+                                                        Deletar
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Pagination Component -->
+                                    <DataPagination :data="products" />
+
                                 </div>
-
-                                <!-- Pagination Component -->
-                                <DataPagination :data="products" />
-
-                                <table class="w-full bg-white border border-gray-200 shadow">
-                                    <thead>
-                                        <tr>
-                                            <th class="py-2 px-4 text-left border">Id</th>
-                                            <th class="py-2 px-4 text-left border">Name</th>
-                                            <th class="py-2 px-4 text-left border">Price</th>
-                                            <th class="py-2 px-4 text-left border">Action</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr v-for="item in products.data" :key="item.id">
-                                            <td class="py-2 px-4 border">{{ item.id }}</td>
-                                            <td class="py-2 px-4 border">
-                                                <Link :href="route('app.products.show', item.id)"
-                                                    class="text-blue-500 underline">
-                                                    {{ item.name }}
-                                                </Link>
-                                            </td>
-                                            <td class="py-2 px-4 border">{{ formatCurrency(item.price) }}</td>
-                                            <td class="text-center py-2 px-4 border">
-
-                                                <Link :href="route('app.products.edit', item.id)"
-                                                    class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
-                                                    Editar
-                                                </Link>
-                                                <button type="submit"
-                                                    class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block"
-                                                    @click="deleteProduct(item.id)">
-                                                    Deletar
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <!-- Pagination Component -->
-                                <DataPagination :data="products" />
-
-                            </div>
+                            </section>
                         </div>
                         <div class="col-span-4">
-                            <div class="mt-4 mx-4">
-                                <div class="flex justify-between">
-                                    <h5>Categorias Cadastradas</h5>
-                                    <Link :href="route('app.categories.create')"
-                                        class="bg-blue-500 text-white p-3 rounded mb-4">
-                                        Aicionar
-                                        Categoria
-                                    </Link>
+                            <section class="py-3 shadow-lg">
+                                <div class="mt-4 mx-4">
+                                    <div class="flex justify-between">
+                                        <h5>Categorias Cadastradas</h5>
+                                        <Link :href="route('app.categories.create')"
+                                            class="bg-blue-500 text-white p-3 rounded mb-4">
+                                            Aicionar
+                                            Categoria
+                                        </Link>
+                                    </div>
+
+                                    <!-- Pagination Component -->
+                                    <DataPagination :data="categories" />
+
+                                    <table class="w-full bg-white border border-gray-200 shadow">
+                                        <thead>
+                                            <tr>
+                                                <th class="py-2 px-4 text-left border">Id</th>
+                                                <th class="py-2 px-4 text-left border">Nome</th>
+                                                <th class="py-2 px-4 text-left border">Ações</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            <tr v-for="item in categories.data" :key="item.id">
+                                                <td class="py-2 px-4 border">{{ item.id }}</td>
+                                                <td class="py-2 px-4 border">
+                                                    <Link :href="route('app.categories.show', item.id)"
+                                                        class="text-blue-500 underline">
+                                                        {{ item.name }}
+                                                    </Link>
+                                                </td>
+                                                <td class="text-center py-2 px-4 border">
+
+                                                    <Link :href="route('app.categories.edit', item.id)"
+                                                        class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
+                                                        Editar
+                                                    </Link>
+                                                    <button type="submit"
+                                                        class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block"
+                                                        @click="deleteCategory(item.id)">
+                                                        Deletar
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Pagination Component -->
+                                    <DataPagination :data="categories" />
+
                                 </div>
-
-                                <!-- Pagination Component -->
-                                <DataPagination :data="categories" />
-
-                                <table class="w-full bg-white border border-gray-200 shadow">
-                                    <thead>
-                                        <tr>
-                                            <th class="py-2 px-4 text-left border">Id</th>
-                                            <th class="py-2 px-4 text-left border">Nome</th>
-                                            <th class="py-2 px-4 text-left border">Ações</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                        <tr v-for="item in categories.data" :key="item.id">
-                                            <td class="py-2 px-4 border">{{ item.id }}</td>
-                                            <td class="py-2 px-4 border">
-                                                <Link :href="route('app.categories.show', item.id)"
-                                                    class="text-blue-500 underline">
-                                                    {{ item.name }}
-                                                </Link>
-                                            </td>
-                                            <td class="text-center py-2 px-4 border">
-
-                                                <Link :href="route('app.categories.edit', item.id)"
-                                                    class="px-2 py-1 bg-green-500 text-white rounded me-2 inline-block">
-                                                    Editar
-                                                </Link>
-                                                <button type="submit"
-                                                    class="px-2 py-1 bg-red-500 text-white rounded me-2 inline-block"
-                                                    @click="deleteCategory(item.id)">
-                                                    Deletar
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-
-                                <!-- Pagination Component -->
-                                <DataPagination :data="categories" />
-
-                            </div>
+                            </section>
                         </div>
                     </div>
                 </div>

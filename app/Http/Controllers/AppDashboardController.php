@@ -10,12 +10,18 @@ use App\Models\User;
 
 class AppDashboardController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
     public function index()
     {
 
         $products = Product::select('id', 'name', 'price')->paginate(10);
-        $categories = Category::select('id','name')->paginate(10);
-        
+        $categories = Category::select('id', 'name')->paginate(10);
+
         $cards = [
             [
                 'id' => 1,
@@ -33,7 +39,7 @@ class AppDashboardController extends Controller
                 'number' => User::count()
             ]
         ];
-        
+
         return Inertia::render('App/Dashboard', [
             'products' => $products,
             'categories' => $categories,

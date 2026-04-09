@@ -53,7 +53,7 @@ A ser escriito...
 </tr>
 <tr>
 <td>Apenas usuários logados poderão fazer o CRUD em produtos e categorias, se não estiver logado apenas visualiza o produto.</td>
-<td>Pendente</td>
+<td>Feito</td>
 </tr>
 <tr>
 <td>Mudar layout dos produtos para se parecer com um e-commerce (na área livre da SPA)</td>
@@ -64,8 +64,8 @@ A ser escriito...
 <td>Feito</td>
 </tr>
 <tr>
-<td>Implementar Paginação de produtos</td>
-<td>Pendente</td>
+<td>Implementar Paginação de Produtos e Categorias</td>
+<td>Feito</td>
 </tr>
 <tr>
 <td>Home recebe no máximo de 10 produtos, produtos recebe mais e com paginação</td>
