@@ -18,7 +18,7 @@ class AppCategoryController extends Controller
      */
     public function index()
     {
-        $categories = category::select('id', 'name')->get();
+        $categories = Category::select('id', 'name')->get();
         return Inertia::render('App/Category/Index', [
             'categories' => $categories
         ]);
@@ -56,7 +56,12 @@ class AppCategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $products = $category->products()->paginate(15);
+
+        return Inertia::render('App/Category/Show', [
+            'category' => $category,
+            'products' => $products,
+        ]);
     }
 
     /**

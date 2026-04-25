@@ -22,7 +22,10 @@ class AppProductController extends Controller
      */
     public function index()
     {
-        $products = Product::select('id', 'name', 'price', 'cover')->paginate(10);
+        $products = Product::with('category')
+            ->select('id', 'name', 'price', 'cover', 'category_id')
+            ->paginate(10);
+
         return Inertia::render('App/Product/Index', [
             'products' => $products
         ]);
@@ -144,7 +147,9 @@ class AppProductController extends Controller
     {
         $name = $request->name;
 
-        $products = Product::where('name', 'like', "%$name%")->paginate(20);
+        $products = Product::with('category')
+            ->where('name', 'like', "%$name%")
+            ->paginate(20);
 
         return Inertia::render('App/Product/Index', [
             'products' => $products

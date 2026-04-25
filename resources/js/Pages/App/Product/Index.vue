@@ -32,23 +32,24 @@
 
 
                         </div>
-                        
+
                         <!-- Pagination Component -->
                         <DataPagination :data="products" />
-                        
+
                         <table class="w-full bg-white border border-gray-200 shadow">
                             <thead>
                                 <tr>
                                     <th class="py-2 px-4 text-left border">Id</th>
                                     <th class="py-2 px-4 text-left border">Capa</th>
                                     <th class="py-2 px-4 text-left border">Nome</th>
+                                    <th class="py-2 px-4 text-left border">Categoria</th>
                                     <th class="py-2 px-4 text-left border">Preço</th>
                                     <th class="py-2 px-4 text-left border">Ações</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <tr v-for="(item, index) in products.data" :key="index">
+                                <tr v-for="item in products.data" :key="item.id">
                                     <td class="py-2 px-4 border">{{ item.id }}</td>
                                     <td class="py-2 px-4 border">
                                         <Link :href="route('app.products.show', item.id)">
@@ -61,6 +62,7 @@
                                             {{ item.name }}
                                         </Link>
                                     </td>
+                                    <td class="py-2 px-4 border">{{ item.category ? item.category.name : '' }}</td>
                                     <td class="py-2 px-4 border">{{ formatCurrency(item.price) }}</td>
                                     <td class="text-center py-2 px-4 border">
                                         <Link :href="route('app.products.edit', item.id)"
